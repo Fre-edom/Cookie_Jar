@@ -7,4 +7,12 @@ class Item(BaseModel):
     id : str 
     description: str | None = None
     date_created: datetime 
+    category: str  
+
+class ItemCreate(BaseModel):
+    name: str 
+    description: str | None = None
+    category: str 
+    
+
 

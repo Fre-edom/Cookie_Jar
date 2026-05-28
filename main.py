@@ -2,34 +2,27 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uvicorn
 import uuid
-from models import Item, User
+from models import Item, User, ItemCreate
+import datetime
 
 
 app = FastAPI()
 
-#items = []
-
-items = {
-        "rr": {"name": "mylist", "description": "a random list", "id": "rr", "date_created": "2024-06-01T12:00:00Z"}
-         }
+items = []
 users = []
-
 
 
 
 #******************************************************************* Define general get API endpoints ************************************************************************
 @app.get("/")
 async def root():
-    return {"message": "I am working!"}
+    return {"message": "Welcome home!"}
 
 
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
 
-@app.get("/home")
-async def home():
-    return {"message": "Welcome home!"}
 
 @app.get("/about")
 async def about():
@@ -56,11 +49,12 @@ async def read_user(user_id: str):
 
 #******************************************************************* Define post API endpoints ************************************************************************
 @app.post("/items/")
-async def create_item(item: Item):
-  #  items.append(item)
-    item.id = str(uuid.uuid4())
-    items[item.id] = item
-    return item
+async def create_item(item: ItemCreate):
+    items.append(item)
+    id = str(uuid.uuid4())
+    date_created = datetime.datetime.now()
+    print (item)
+    return [item,id,date_created]
 
 @app.post("/users/")
 async def create_user(User: User):
