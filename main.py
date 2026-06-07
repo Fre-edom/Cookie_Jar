@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from database import engine, Base
+from models.item_model import ItemModel
 import uvicorn
 import uuid
 from models import Item, User, ItemCreate
@@ -7,6 +9,7 @@ import datetime
 
 
 app = FastAPI()
+Base.metadata.create_all(bind=engine)
 
 items = []
 users = []

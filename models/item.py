@@ -9,6 +9,7 @@ class Item(BaseModel):
     date_created: datetime 
     category: str  
 
+
 class ItemCreate(BaseModel):
     name: str 
     description: str | None = None

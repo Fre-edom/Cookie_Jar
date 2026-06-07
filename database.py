@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
-from pydantic import BaseSettings
+from pydantic_settings  import BaseSettings
 
 
 class Settings(BaseSettings):
@@ -11,3 +11,7 @@ class Settings(BaseSettings):
 setting = Settings()
 engine = create_engine(setting.database_url)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+
+class Base(DeclarativeBase):
+    pass
