@@ -1,0 +1,4 @@
+Database
+---Naming
+      each table have the tablename + id as the name of the primary key
+      each foreign key has id+ name of table that the foreign key is primary at

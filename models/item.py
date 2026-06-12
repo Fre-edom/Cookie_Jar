@@ -1,19 +1,21 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from datetime import datetime
 
 
-class Item(BaseModel):
-    name: str
-    id : str 
-    description: str | None = None
-    date_created: datetime 
-    category: str  
-
-
 class ItemCreate(BaseModel):
-    name: str 
+    name: str
     description: str | None = None
-    category: str 
+    category: str
+
+
+class ItemRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: str
+    name: str
+    description: str | None = None
+    category: str
+    date_created: datetime
+
     
 
 
